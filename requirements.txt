@@ -10,5 +10,6 @@ pytube==15.0.0
 requests==2.31.0
 streamlit==1.27.1
 tiktoken==0.5.1
+urllib3==1.26.6
 unstructured==0.10.18
 openai==1.2.3
