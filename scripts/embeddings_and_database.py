@@ -5,16 +5,15 @@ from langchain.vectorstores import Chroma
 from langchain.document_loaders import DirectoryLoader
 import pickle
 from dotenv import load_dotenv
-import time
 
 load_dotenv()
-embedding_function = OpenAIEmbeddings()
 
 def load_pickle(path):
     # load pickled document from file\
-    with open(path, "rb") as f:
-        pickled_docs = f.read()
-    return pickled_docs
+    documents = pickle.loads(
+        open("./11-Langchain-Bot/langchain_documents.pkl", "rb").read()
+    )
+    return documents
 
 def embed_and_store(docs):
     # create embedding function, spin up chroma, and embed all documents.
@@ -28,8 +27,9 @@ def embed_and_store(docs):
 
 
 def main():
-
-
+    load_pickle_path = "./documents/pickled_documents.pkl"
+    docs = load_pickle(load_pickle_path)
+    embed_and_store(docs)
 
 if __name__ == "__main__":
     main()
