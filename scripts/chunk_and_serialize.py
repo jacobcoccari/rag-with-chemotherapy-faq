@@ -1,5 +1,6 @@
 from langchain.text_splitter import MarkdownHeaderTextSplitter
 import pickle as pickle
+import os
 
 def read_md(path):
     # read the file named md_anderson_chemo.md and return the string.
@@ -21,13 +22,13 @@ def split_md(text):
 
 def save_to_pkl(docs):
     pickled_str = pickle.dumps(docs)
-    with open("./chemo_documents.pkl", "wb") as f:
+    with open("./documents/pickled_documents.pkl", "wb") as f:
         f.write(pickled_str)
 
 
 if __name__ == "__main__":
     # read the file named md_anderson_chemo.md and return the string.
-    text = read_md("md_anderson_chemo.md")
+    text = read_md("./documents/md_anderson_chemo.md")
     # split the text into a list of strings
     md_header_splits = split_md(text)
     #save the list of strings to a pickle file
