@@ -26,7 +26,7 @@ def save_to_pkl(docs):
         f.write(pickled_str)
 
 
-if __name__ == "__main__":
+def main():
     # read the file named md_anderson_chemo.md and return the string.
     text = read_md("./documents/md_anderson_chemo.md")
     # split the text into a list of strings
@@ -34,3 +34,6 @@ if __name__ == "__main__":
     #save the list of strings to a pickle file
     save_to_pkl(md_header_splits)
     # print the first 5 splits
+
+if __name__ == "__main__":
+    main()
