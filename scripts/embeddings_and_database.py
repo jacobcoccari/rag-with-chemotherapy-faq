@@ -1,17 +1,15 @@
-# pip install "unstructured[md]"
-# pip install unstructured
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
-from langchain.document_loaders import DirectoryLoader
 import pickle
 from dotenv import load_dotenv
+import time
 
 load_dotenv()
 
 def load_pickle(path):
     # load pickled document from file\
     documents = pickle.loads(
-        open("./11-Langchain-Bot/langchain_documents.pkl", "rb").read()
+        open(path, "rb").read()
     )
     return documents
 
@@ -22,8 +20,10 @@ def embed_and_store(docs):
         embedding_function=embedding_function,
         persist_directory="./db_chemo_guide/",
     )
-    db.add_documents(docs)
-    db.persist()
+    for doc in docs:
+        db.add_documents([doc])
+        db.persist()
+        time.sleep(.001)
 
 
 def main():

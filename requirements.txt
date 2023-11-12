@@ -1,7 +1,7 @@
 chromadb==0.4.8
 python-dotenv == 1.0.0
 gitpython==3.1.37
-langchain==0.0.327
+langchain==0.0.316
 langsmith==0.0.52
 pydantic==1.10.12
 pydantic_core==2.6.3
@@ -12,4 +12,4 @@ streamlit==1.27.1
 tiktoken==0.5.1
 urllib3==1.26.6
 unstructured==0.10.18
-openai==1.2.3
+openai==0.28.1
