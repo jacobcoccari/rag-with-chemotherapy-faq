@@ -11,7 +11,7 @@ load_dotenv()
 
 
 def generate_assistant_response(prompt):
-    model = ChatOpenAI()
+    model = ChatOpenAI(model = 'gpt-4-1106-preview')
     memory = ConversationBufferMemory(return_messages=True)
     embedding_function = OpenAIEmbeddings()
     db = Chroma(
