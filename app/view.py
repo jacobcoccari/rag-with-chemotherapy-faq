@@ -6,25 +6,22 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
 
 
+def format_memory_streamlit(role, prompt):
+    st.session_state.messages.append({
+        "role": role,
+        "content": prompt,
+    })
 
-def save_chat_history(prompt, memory):
-    st.session_state.messages.append(
-        {
-            "role": "user",
-            "content": prompt,
-        }
-    )
+
+def save_chat_history(prompt, retriever):
+    format_memory_streamlit("user", prompt)
     with st.chat_message("user"):
         st.markdown(prompt)
-    assistant_response = generate_assistant_response(prompt, memory)
+    assistant_response = generate_assistant_response(prompt, retriever, st.session_state.messages)
     with st.chat_message("assistant"):
         st.markdown(assistant_response)
-    st.session_state.messages.append(
-        {
-            "role": "assistant",
-            "content": assistant_response,
-        }
-    )
+    format_memory_streamlit("assistant", assistant_response)
+    print(st.session_state.messages)
 
 
 def main():
@@ -45,7 +42,7 @@ def main():
     prompt = st.chat_input("What is up?")
 
     if prompt:
-        save_chat_history(prompt, memory, retriever)
+        save_chat_history(prompt, retriever)
 
 
 if __name__ == "__main__":
