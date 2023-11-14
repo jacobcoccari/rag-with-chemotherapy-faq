@@ -19,7 +19,7 @@ def format_docs(docs):
 
 def generate_assistant_response(query, retriever, streamlit_memory):
     history = get_chat_history(streamlit_memory)
-    prompt = create_prompt(history)
+    prompt = create_prompt(history) 
     model = ChatOpenAI(model = 'gpt-4-1106-preview')
     check = harmful_content_check(query)
     # callback = TokenPrinter()
