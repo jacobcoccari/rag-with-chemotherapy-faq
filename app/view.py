@@ -24,7 +24,7 @@ def save_chat_history(prompt, retriever):
 
 
 def main():
-    st.title("ChatGPT Clone with ConversationChain")
+    st.title("MD Anderson ChemoBot") 
     memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
     embedding_function = OpenAIEmbeddings()
     db = Chroma(
@@ -38,7 +38,7 @@ def main():
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-    prompt = st.chat_input("What is up?")
+    prompt = st.chat_input("How can I help you with your chemotherapy?")
 
     if prompt:
         save_chat_history(prompt, retriever)
