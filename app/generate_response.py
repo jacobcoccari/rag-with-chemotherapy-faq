@@ -20,7 +20,9 @@ def generate_assistant_response(query, retriever, streamlit_memory):
     history = get_chat_history(streamlit_memory)
     prompt = create_prompt(history)
     model = ChatOpenAI(model = 'gpt-4-1106-preview')
-    # harmful_content_check(query)
+    check = harmful_content_check(query)
+    if check is not None:
+        print(check)
     chain = (
         {"context": retriever | format_docs, "question": RunnablePassthrough()}
         | prompt

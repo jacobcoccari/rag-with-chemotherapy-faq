@@ -21,7 +21,6 @@ def save_chat_history(prompt, retriever):
     with st.chat_message("assistant"):
         st.markdown(assistant_response)
     format_memory_streamlit("assistant", assistant_response)
-    print(st.session_state.messages)
 
 
 def main():
