@@ -30,6 +30,4 @@ def generate_assistant_response(query, retriever, streamlit_memory):
         | prompt
         | model
     )
-    # for s in chain.stream({"topic": "bears"}):
-    #     print(s.content, end="", flush=True)
     return chain.invoke(query).content  
